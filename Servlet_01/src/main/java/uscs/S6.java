@@ -3,7 +3,6 @@ package uscs;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,48 +10,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet_02
+ * Servlet implementation class S6
  */
-@WebServlet("/Servlet_02")
-public class Servlet_02 extends HttpServlet {
+@WebServlet("/S6")
+public class S6 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static int[] tab_numeros = new int[10];  //Atributo de dados do Servlet
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Servlet_02() {
+	public S6() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException {
-		for(int i=0; i < tab_numeros.length; i++)
-			tab_numeros[i] = i;
 	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
-		String Titulo = "Servlet 02";
+		String Titulo = "SERVLET_06 - Coletando dados de um FORM HTML - Método HTTP - GET";
 		out.println(
 				"<HTML>" +
 						"<HEAD><TITLE>" + Titulo + "</TITLE></HEAD>" +
-						"<BODY BGCOLOR=\"#6699FF\">" +
-						"<H1 ALIGN=CENTER>" + Titulo + "</H1>" +
-						"<OL>" + "<HR SIZE=4 WIDTH=50%>" +
-						"<H2 ALIGN=CENTER>" +
-						"Servlet_02" + "</H2>\n" +
-				"</BODY></HTML>");
-		for (int i=0; i<tab_numeros.length; i++)
-			out.println( "<H2 ALIGN=CENTER>Número: " + tab_numeros[i] + "</H2>\n" );
-		out.println("</OL>" + "</BODY></HTML>");
-
+						"<BODY BGCOLOR=\"#6699AA\">" +
+						"<H1 ALIGN=\"CENTER\">" + Titulo + "</H1>" +
+						"<UL>" +
+						"<LI><B>Primeiro parâmetro: </B>: "
+						+ request.getParameter("param1") +
+						"<LI><B>Segundo parâmetro: </B>: "
+						+ request.getParameter("param2") +
+						"</UL>" +
+						"</BODY></HTML>"
+				);
 	}
 
 	/**
